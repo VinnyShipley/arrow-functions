@@ -137,23 +137,29 @@ const objectLit = array => ({
 // TODO: Uncomment the following line of code to see the output in the browser console
 console.log(objectLit());
 
+// Non-arrow function
+// let sumAndProduct = function(a, b) {
+//   let sum = a + b;
+//   let product = a * b;
+//   return [sum, product];
+// };
 
-let sumAndProduct = function(a, b) {
-  let sum = a + b;
-  let product = a * b;
-  return [sum, product];
-};
-
-// TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(sumAndProduct(3, 9));
-
-
-let message = function(name) {
-  return `Hello, ${name}!`;
-};
+//Arrow function
+const sumAndProduct = (a, b) => `${a +b}, ${a *b}`;
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(message('Allie'));
+console.log(sumAndProduct(3, 9));
+
+// Non-arrow function
+// let message = function(name) {
+//   return `Hello, ${name}!`;
+// };
+
+//Arrow function
+let message = name => `Hello, ${name}`;
+
+// TODO: Uncomment the following line of code to see the output in the browser console
+console.log(message('Allie'));
 
 
 let Student = function(name, age, hometown) {
