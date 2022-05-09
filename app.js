@@ -129,13 +129,13 @@ console.log(sum(1, 2, 3, 4));
 
 // //Arrow function
 const objectLit = array => ({
-  key1: 'value1',
-  key2: 'value2',
-  key3: 'value3'
+  valueOne: array[0],
+  valueTwo: array[1],
+  valueThree: array[2]
 })
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-console.log(objectLit());
+console.log(objectLit(['valueOne', 'valueTwo', 'valueThree']));
 
 // Non-arrow function
 // let sumAndProduct = function(a, b) {
@@ -162,17 +162,30 @@ let message = name => `Hello, ${name}`;
 console.log(message('Allie'));
 
 
-let Student = function(name, age, hometown) {
+let Student = function(name, hometown, age) {
   this.name = name;
-  this.age = age;
   this.hometown = hometown;
+  this.age = age;
 };
 
-let joe = new Student('Joe', 'Schmoe', 100);
+
+// Arrow function to create constructor, does not work
+// let Student = (name, hometown, age) => {
+//   this.name = name;
+//   this.hometown = hometown;
+//   this.age = age;
+// }
+
+let joe = new Student('Joe', 'Schmoe', 100)
+
+// Arrow function to add joe into the constructor? Does not work
+// let joe = new Student => ({'Joe', 'Schmoe', 100});
+
+
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this code to break!
-// console.log(joe);
+console.log(joe);
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
 
@@ -182,20 +195,25 @@ Student.prototype.greeting = function() {
   return `Hi, my name is ${this.name}`;
 };
 
+//Arrow function
+// let Student.name.greeting = () => `Hi, my name is ${this.name}`;
+
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this method to break!
-// console.log(joe.greeting());
+console.log(joe.greeting());
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
 
+// Non-arrow function
+// Student.courseName = function() {
+//   return 'This student is enrolled in Code 301.';
+// };
 
-
-Student.courseName = function() {
-  return 'This student is enrolled in Code 301.';
-};
+//Arrow function
+Student.courseName = () => 'This student is enrolled in Code 301.';
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(Student.courseName());
+console.log(Student.courseName());
 
 
 
@@ -206,17 +224,17 @@ Student.prototype.scope = function() {
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// joe.scope();
+joe.scope();
 
 Student.prototype.scopeArrow = () => console.log(this);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// joe.scopeArrow();
+joe.scopeArrow();
 
 // TODO: Write a COMMENT below to answer the following questions.
 // 1. What is "this" when joe.scope() is invoked?
-//
+// the instance of joe in the Students constructor
 // 2. What is "this" when joe.scopeArrow() is invoked?
-//
+// Global
 // 3. Explain why "this" is different when an arrow function is used.
-//
+// Because arrow functions this only applies to the enclosing function that it is within. If not, it is scoped globally, and if it is scoped within a constructor, it goes to what the constructor considers this, not the instance that it is creating or referencing. 
